@@ -12,26 +12,29 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build Archive
+      - name: Locate Project and Build
         run: |
-          cd MangaReader 2>/dev/null || true
+          PROJ_PATH=$(find . -name "*.xcodeproj" -maxdepth 3 | head -n 1)
+          PROJ_DIR=$(dirname "$PROJ_PATH")
+          echo "Found project at: $PROJ_PATH in $PROJ_DIR"
+          cd "$PROJ_DIR"
+          
           xcodebuild clean archive \
-            -project MangaReader.xcodeproj \
-            -scheme MangaReader \
+            -project "$(basename "$PROJ_PATH")" \
+            -scheme "MangaReader" \
             -configuration Release \
             -destination "generic/platform=iOS" \
-            -archivePath ./build/MangaReader.xcarchive \
+            -archivePath "$GITHUB_WORKSPACE/build/MangaReader.xcarchive" \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY=""
 
       - name: Package IPA
         run: |
-          cd MangaReader 2>/dev/null || true
-          mkdir -p ./build/Payload
-          cp -r ./build/MangaReader.xcarchive/Products/Applications/MangaReader.app ./build/Payload/
-          cd ./build
-          zip -r ../../MangaReader.ipa Payload
+          mkdir -p $GITHUB_WORKSPACE/Payload
+          cp -r $GITHUB_WORKSPACE/build/MangaReader.xcarchive/Products/Applications/MangaReader.app $GITHUB_WORKSPACE/Payload/
+          cd $GITHUB_WORKSPACE
+          zip -r MangaReader.ipa Payload
 
       - name: Upload IPA
         uses: actions/upload-artifact@v4
