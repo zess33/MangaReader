@@ -22,6 +22,7 @@ jobs:
           xcodebuild clean build \
             -project MangaReader.xcodeproj \
             -scheme MangaReader \
+            -destination 'generic/platform=iOS' \
             -configuration Release \
             -sdk iphoneos \
             -derivedDataPath ./build \
@@ -51,5 +52,3 @@ jobs:
         with:
           name: MangaReader-iOS-IPA
           path: MangaReader.ipa
-
-
