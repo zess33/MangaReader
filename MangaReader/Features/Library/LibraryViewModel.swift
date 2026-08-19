@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 import SwiftData
+import Observation
 
 /// ViewModel para la gestion y filtrado de la Biblioteca de mangas favoritos.
 @MainActor

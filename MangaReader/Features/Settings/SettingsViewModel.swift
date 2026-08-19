@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 import SwiftData
+import Observation
 
 /// ViewModel de la pantalla de Ajustes para configuracion de fuentes, lector y almacenamiento.
 @MainActor

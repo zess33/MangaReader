@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 import SwiftData
+import Observation
 
 /// ViewModel para el Lector Dual (Scroll Vertical y Pagina por Pagina) con Precarga Inteligente.
 @MainActor

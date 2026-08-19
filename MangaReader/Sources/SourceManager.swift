@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import Observation
 
 /// Coordinador centralizado de todas las fuentes de manga (Mock, AniList, MangaDex).
 @MainActor

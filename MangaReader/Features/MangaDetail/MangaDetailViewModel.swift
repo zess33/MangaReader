@@ -1,6 +1,7 @@
 import Foundation
 import SwiftUI
 import SwiftData
+import Observation
 
 /// ViewModel para la pantalla de detalle del manga.
 @MainActor

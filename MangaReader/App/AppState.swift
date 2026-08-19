@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import Observation
 
 @Observable
 public final class AppState: @unchecked Sendable {

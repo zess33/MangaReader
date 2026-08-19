@@ -1,5 +1,6 @@
 import Foundation
 import SwiftUI
+import Observation
 
 /// ViewModel reactivo para la pantalla de busqueda con filtros en tiempo real.
 @MainActor
