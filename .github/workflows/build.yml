@@ -14,20 +14,17 @@ jobs:
 
       - name: Compile MangaReader iOS App
         run: |
-          PROJ_PATH=$(find . -name "*.xcodeproj" -maxdepth 3 | head -n 1)
-          PROJ_DIR=$(dirname "$PROJ_PATH")
-          echo "Found project at: $PROJ_PATH in $PROJ_DIR"
-          cd "$PROJ_DIR"
-          
           xcodebuild \
-            -project "$(basename "$PROJ_PATH")" \
-            -target "MangaReader" \
+            -project MangaReader.xcodeproj \
+            -scheme MangaReader \
+            -destination 'generic/platform=iOS' \
             -configuration Release \
             -sdk iphoneos \
             build \
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGN_IDENTITY="" \
+            AD_HOC_CODE_SIGNING_ALLOWED=YES \
             SYMROOT="$GITHUB_WORKSPACE/build"
 
       - name: Package IPA
